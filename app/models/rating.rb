@@ -5,4 +5,12 @@ class Rating < ApplicationRecord
   def promoter?
     score >= 9 && score <= 10
   end
+
+  def passive?
+    score >= 7 && score <= 8
+  end
+
+  def detractor?
+    score >= 0 && score <= 6
+  end
 end
