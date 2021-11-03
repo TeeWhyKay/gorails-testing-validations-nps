@@ -13,4 +13,9 @@ class Rating < ApplicationRecord
   def detractor?
     score >= 0 && score <= 6
   end
+
+  # updates the test score tied to the person model
+  after_create do
+    person.update(score: score)
+  end
 end
