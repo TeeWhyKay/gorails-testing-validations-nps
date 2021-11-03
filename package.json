@@ -6,6 +6,7 @@
     "@hotwired/turbo-rails": "^7.0.1",
     "@popperjs/core": "^2.10.2",
     "@rails/actioncable": "^6.0.0",
+    "@rails/actiontext": "^6.0.4-1",
     "@rails/activestorage": "^6.0.0",
     "@rails/request.js": "^0.0.5",
     "@rails/ujs": "^6.0.0",
@@ -16,6 +17,7 @@
     "expose-loader": "^3.1.0",
     "local-time": "^2.1.0",
     "sass": "^1.43.4",
+    "trix": "^1.2.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
