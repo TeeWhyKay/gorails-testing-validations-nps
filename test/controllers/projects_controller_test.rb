@@ -1,10 +1,30 @@
 require 'test_helper'
 
 class ProjectsControllerTest < ActionDispatch::IntegrationTest
-  test 'can get index' do
+  setup do
+    sign_in users(:regular)
+  end
+
+  test 'redirected if not logged in' do
+    sign_out :user
+    get projects_url
+    assert_response :redirect
+  end
+
+  test 'can get index if logged in' do
     get projects_url
     assert_response :success
   end
+
+  test 'can get new' do
+    get projects_url
+    assert_response :success
+  end
+  # this test is a redundant test.. as it is duplicated.
+  # test 'can get new' do
+  #   get new_project_url
+  #   assert_response :redirect
+  # end
   # setup do
   #   @project = projects(:one)
   # end
