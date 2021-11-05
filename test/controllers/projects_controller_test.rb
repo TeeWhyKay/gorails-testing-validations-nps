@@ -40,9 +40,21 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'can view project' do
-
+    get project_url(@project)
+    assert_response :success
   end
 
+  test 'can edit project' do
+    get edit_project_url(@project)
+    assert_response :success
+  end
+
+  test 'can update project' do
+    patch project_url(@project), params: { project: { title: 'Updated Project' } }
+    assert_redirected_to project_url(@project)
+    @project.reload
+    assert_equal 'Updated Project', @project.title
+  end
 
   # this test is a redundant test.. as it is duplicated.
   # test 'can get new' do
