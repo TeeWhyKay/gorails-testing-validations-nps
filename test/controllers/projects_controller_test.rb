@@ -61,6 +61,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     # when update and create fails it returns the form with 200 due to render
     # you could assert select the error message eg. 'Invalid title name'
     assert_response :unprocessable_entity
+    assert_select 'h1', 'Edit Project'
   end
 
   test 'can destroy project' do
