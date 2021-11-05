@@ -5,36 +5,36 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:regular)
   end
 
-  test 'redirected if not logged in' do
-    sign_out :user
-    get projects_url
-    assert_response :redirect
-    follow_redirect!
-    assert_select 'h1', 'Log in'
-  end
+  # test 'redirected if not logged in' do
+  #   sign_out :user
+  #   get projects_url
+  #   assert_response :redirect
+  #   follow_redirect!
+  #   assert_select 'h1', 'Log in'
+  # end
 
   test 'can get index if logged in' do
     get projects_url
     assert_response :success
   end
 
-  test 'can get new' do
-    get projects_url
-    assert_response :success
-  end
+  # test 'can get new' do
+  #   get projects_url
+  #   assert_response :success
+  # end
 
-  test 'can create a project' do
-    # gets count before and after the block and compares the difference
-    assert_difference('Project.count') do
-      post projects_url, params: { project: { title: 'Test Project' } }
-    end
-  end
+  # test 'can create a project' do
+  #   # gets count before and after the block and compares the difference
+  #   assert_difference('Project.count') do
+  #     post projects_url, params: { project: { title: 'Test Project' } }
+  #   end
+  # end
 
-  test 'cannot create project with invalid attributes' do
-    assert_no_difference('Project.count') do
-      post projects_url, params: { project: { title: '' } }
-    end
-  end
+  # test 'cannot create project with invalid attributes' do
+  #   assert_no_difference('Project.count') do
+  #     post projects_url, params: { project: { title: '' } }
+  #   end
+  # end
   # this test is a redundant test.. as it is duplicated.
   # test 'can get new' do
   #   get new_project_url
