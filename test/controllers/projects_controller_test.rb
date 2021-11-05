@@ -9,6 +9,8 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     sign_out :user
     get projects_url
     assert_response :redirect
+    follow_redirect!
+    assert_select 'h1', 'Log in'
   end
 
   test 'can get index if logged in' do
