@@ -56,6 +56,14 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Updated Project', @project.title
   end
 
+  test 'cannot update project with invalid attribute' do
+    patch project_url(@project), params: { project: { title: '' } }
+    # when update and create fails it returns the form with 200 due to render
+    # you could assert select the error message eg. 'Invalid title name'
+    assert_response :success
+  end
+
+
   # this test is a redundant test.. as it is duplicated.
   # test 'can get new' do
   #   get new_project_url
