@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  rating: one
+  name: MyString
+  email: MyString
+  score: 1
+
+two:
+  project: two
+  rating: two
+  name: MyString
+  email: MyString
+  score: 1

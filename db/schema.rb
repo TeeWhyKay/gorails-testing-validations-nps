@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_093218) do
+ActiveRecord::Schema.define(version: 2021_11_05_041306) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -65,12 +65,24 @@ ActiveRecord::Schema.define(version: 2021_11_03_093218) do
 
   create_table "people", force: :cascade do |t|
     t.integer "project_id", null: false
+    t.integer "rating_id", null: false
     t.string "name"
     t.string "email"
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_people_on_project_id"
+    t.index ["rating_id"], name: "index_people_on_rating_id"
+  end
+
+  create_table "peoples", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.string "name"
+    t.string "email"
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_peoples_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -119,6 +131,8 @@ ActiveRecord::Schema.define(version: 2021_11_03_093218) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "people", "projects"
-  add_foreign_key "ratings", "people"
+  add_foreign_key "people", "ratings"
+  add_foreign_key "peoples", "projects"
+  add_foreign_key "ratings", "peoples", column: "person_id"
   add_foreign_key "services", "users"
 end
