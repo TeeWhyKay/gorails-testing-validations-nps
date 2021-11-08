@@ -19,7 +19,7 @@
   <div class="mb-3">
     <% if project.persisted? %>
       <div class="float-end">
-        <%= link_to 'Destroy', project, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <%= button_to 'Destroy', project_path(project), method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
       </div>
     <% end %>
 
