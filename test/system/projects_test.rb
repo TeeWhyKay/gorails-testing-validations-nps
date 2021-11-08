@@ -18,7 +18,7 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on 'Add New Project'
     fill_in 'Title', with: 'Hello Test'
     click_on 'Create Project'
-
+    #   assert_text "Project was successfully created"
     assert_selector 'h1', text: 'Hello Test'
   end
 
@@ -29,43 +29,23 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on 'Edit'
     fill_in 'Title', with: 'Hello Test'
     click_on 'Update Project'
-
+    #   assert_text "Project was successfully updated"
     assert_selector 'h1', text: 'Hello Test'
   end
 
-  # test "visiting the index" do
-  #   visit projects_url
-  #   assert_selector "h1", text: "Projects"
-  # end
+  test 'can destroy a project' do
+    sign_in users(:regular)
+    visit project_url(@project)
 
-  # test "creating a Project" do
-  #   visit projects_url
-  #   click_on "New Project"
+    click_on 'Edit'
+    click_on 'Destroy'
+    # click_on 'Confirm'
 
-  #   fill_in "Title", with: @project.title
-  #   click_on "Create Project"
+    assert_selector 'h1', text: 'Projects'
+    #   page.accept_confirm do
+    #     click_on "Destroy", match: :first
+    #  end
 
-  #   assert_text "Project was successfully created"
-  #   click_on "Back"
-  # end
-
-  # test "updating a Project" do
-  #   visit projects_url
-  #   click_on "Edit", match: :first
-
-  #   fill_in "Title", with: @project.title
-  #   click_on "Update Project"
-
-  #   assert_text "Project was successfully updated"
-  #   click_on "Back"
-  # end
-
-  # test "destroying a Project" do
-  #   visit projects_url
-  #   page.accept_confirm do
-  #     click_on "Destroy", match: :first
-  #   end
-
-  #   assert_text "Project was successfully destroyed"
-  # end
+    #   assert_text "Project was successfully destroyed"
+  end
 end
