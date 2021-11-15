@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       db:
-        image: postgres:11
+        image: postgres
         ports: ['5432:5432']
         env:
           POSTGRES_PASSWORD: postgres
@@ -21,14 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - name: Setup node@v14
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - run: npm install
+        uses: ruby/setup-ruby@v1
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install # will run `yarn install` command
@@ -38,7 +31,7 @@ jobs:
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run:
+        run: |
           sudo apt-get -yqq install libpq-dev
           gem install bundler
           bundle install --jobs 4 --retry 3
