@@ -28,26 +28,18 @@ jobs:
       - run: yarn install
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
-
+      # - uses: borales/actions-yarn@v2.3.0
+      #   with:
+      #     cmd: install # will run `yarn install` command
       - name: Build and run tests
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/test
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-      - name: Installing libpq
         run: |
           sudo apt-get -yqq install libpq-dev
-
-      - name: Installing bundler
-        run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-
-      - name: Prepare rails db
-        run: |
           bundle exec rails db:prepare
-
-      - name: Run tests
-        run: |
           bundle exec rails test
