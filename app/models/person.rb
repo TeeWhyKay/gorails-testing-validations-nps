@@ -1,4 +1,4 @@
 class Person < ApplicationRecord
   belongs_to :project
-  belongs_to :rating
+  has_many :ratings, dependent: :destroy
 end
