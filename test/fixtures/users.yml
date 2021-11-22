@@ -8,7 +8,7 @@
 regular:
   first_name: Chris
   last_name: Oliver
-  email: christ@gorails.com
+  email: chris@gorails.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   admin: false
 
